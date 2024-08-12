@@ -253,38 +253,6 @@
   body.dark-mode .dark-mode-toggle:hover {
     background-color: rgba(0, 0, 0, 0.3);
   }
-  .author-link {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
-    color: #fff;
-    padding: 8px 18px;
-    font-size: 0.9em;
-    border-radius: 25px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(106, 17, 203, 0.4);
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-  }
-  .author-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.6);
-  }
-  .author-link:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 8px rgba(106, 17, 203, 0.4);
-  }
-  .author-link::before {
-    content: '👤';
-    margin-right: 6px;
-    font-size: 1.1em;
-  }
-  body.dark-mode .author-link {
-    background: linear-gradient(45deg, #4a0e95, #1c5ac7);
-  }
   .neon-title {
     font-size: 4em;
     font-weight: bold;
@@ -316,23 +284,23 @@
     }
   }
 
-  .footer-profile {
+  .header-profile {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin-bottom: 20px;
     background-color: rgba(255, 255, 255, 0.1);
     padding: 15px;
     border-radius: 10px;
     transition: all 0.3s ease;
   }
 
-  .footer-profile:hover {
+  .header-profile:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-5px);
   }
 
-  .footer-profile img {
+  .header-profile img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -341,39 +309,62 @@
     transition: all 0.3s ease;
   }
 
-  .footer-profile:hover img {
+  .header-profile:hover img {
     transform: scale(1.1);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   }
 
-  .footer-profile-info {
+  .header-profile-info {
     text-align: left;
+    position: relative;
   }
 
-  .footer-profile-name {
+  .header-profile-name {
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
   }
 
-  .footer-profile-link {
+  .header-profile-name::after {
+    content: '✓';
+    display: inline-block;
+    margin-left: 5px;
+    background-color: #1DA1F2;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.7em;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+  }
+
+  .header-profile-link {
     color: #4267B2;
     text-decoration: none;
     font-size: 0.9em;
     transition: color 0.3s ease;
   }
 
-  .footer-profile-link:hover {
+  .header-profile-link:hover {
     color: #5b7bd5;
     text-decoration: underline;
   }
 </style>
 </head>
 <body>
-  <a href="https://www.facebook.com/26.BryanCortes?mibextid=ZbWKwL" class="author-link" target="_blank">Autor: Bryan Cortes</a>
   <button class="dark-mode-toggle" onclick="toggleDarkMode()">Modo Oscuro</button>
   <div class="container">
     <header>
+      <div class="header-profile">
+        <img src="https://raw.githubusercontent.com/playgoapp/archivos/main/FB_IMG_1723443402170.jpg" alt="Bryan Cortes profile picture">
+        <div class="header-profile-info">
+          <div class="header-profile-name">Bryan Cortes</div>
+          <a href="https://www.facebook.com/26.BryanCortes?mibextid=ZbWKwL" class="header-profile-link" target="_blank">Ver perfil de Facebook</a>
+        </div>
+      </div>
       <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="45" fill="#e50914"/>
         <path d="M35 30v40l40-20z" fill="#fff"/>
@@ -425,13 +416,6 @@
 
   <footer>
     <p>© Copyright OnyxDev</p>
-    <div class="footer-profile">
-      <img src="https://raw.githubusercontent.com/playgoapp/archivos/main/FB_IMG_1723443402170.jpg" alt="Bryan Cortes profile picture">
-      <div class="footer-profile-info">
-        <div class="footer-profile-name">Bryan Cortes</div>
-        <a href="https://www.facebook.com/26.BryanCortes?mibextid=ZbWKwL" class="footer-profile-link" target="_blank">Ver perfil de Facebook</a>
-      </div>
-    </div>
   </footer>
 
   <script>
