@@ -502,6 +502,37 @@
     transform: translate(-50%, -50%);
     font-size: 14px;
   }
+
+  .audio-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .audio-player audio {
+    width: 250px;
+  }
+
+  .audio-player button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .audio-player button:hover {
+    transform: scale(1.1);
+  }
 </style>
 </head>
 <body>
@@ -586,6 +617,14 @@
     </a>
   </div>
 
+  <div class="audio-player">
+    <audio id="background-music" loop>
+      <source src="https://github.com/playgoapp/archivos/releases/download/Videos/LALA.Instrumental.MP3_160K.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button onclick="toggleMusic()">🔊</button>
+  </div>
+
   <script>
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
@@ -596,6 +635,15 @@
       } else {
         darkModeToggle.textContent = 'Modo Oscuro';
         localStorage.setItem('darkMode', 'disabled');
+      }
+    }
+
+    function toggleMusic() {
+      const audio = document.getElementById('background-music');
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
       }
     }
 
@@ -659,93 +707,19 @@
         const y = (e.clientY - top) / height;
         
         const img = appPreview.querySelector('img');
-        img.style.transformOrigin = `${x * 100}% ${y * 100}%`;
-        img.style.transform = `scale(1.1)`;
+        img.style.transform = `scale(1.1) translate(${(0.5 - x) * 20}px, ${(0.5 - y) * 20}px)`;
       });
-
       appPreview.addEventListener('mouseleave', () => {
         const img = appPreview.querySelector('img');
-        img.style.transform = 'scale(1)';
+        img.style.transform = 'scale(1) translate(0, 0)';
       });
 
-      // Agregar evento de clic al botón flotante de WhatsApp
-      const floatingWhatsappButton = document.querySelector('.floating-whatsapp a');
-      floatingWhatsappButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Te estamos redirigiendo al grupo de WhatsApp. ¡Gracias por unirte!');
-        setTimeout(() => {
-          window.open(e.target.href, '_blank');
-        }, 1000);
+      // Iniciar reproducción automática de música
+      const audio = document.getElementById('background-music');
+      audio.volume = 0.5; // Establecer volumen al 50%
+      audio.play().catch(error => {
+        console.log('Reproducción automática bloqueada por el navegador:', error);
       });
-
-      // Añadir efecto de hover al contenedor de video
-      const videoContainer = document.querySelector('.video-container');
-      videoContainer.addEventListener('mouseenter', () => {
-        videoContainer.style.transform = 'scale(1.05)';
-      });
-      videoContainer.addEventListener('mouseleave', () => {
-        videoContainer.style.transform = 'scale(1)';
-      });
-    });
-  </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <path d="M8 5v14l11-7z"/>
-    </svg>
-  </button>
-
-  <audio id="backgroundMusic" loop>
-    <source src="https://github.com/playgoapp/archivos/releases/download/Videos/LALA.Instrumental.MP3_160K.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-  </audio>
-
-  <script>
-    // ... (previous JavaScript code remains unchanged) ...
-
-    document.addEventListener('DOMContentLoaded', (event) => {
-      const musicButton = document.getElementById('musicButton');
-      const backgroundMusic = document.getElementById('backgroundMusic');
-      let isPlaying = false;
-
-      musicButton.addEventListener('click', () => {
-        if (isPlaying) {
-          backgroundMusic.pause();
-          musicButton.classList.remove('playing');
-          musicButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-        } else {
-          backgroundMusic.play();
-          musicButton.classList.add('playing');
-          musicButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-        }
-        isPlaying = !isPlaying;
-      });
-
-      // Autoplay music when the page loads
-      backgroundMusic.play().catch(error => {
-        console.log("Autoplay was prevented. User interaction is required to start the music.");
-      });
-      isPlaying = true;
-      musicButton.classList.add('playing');
-      musicButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
     });
   </script>
 </body>
