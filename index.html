@@ -216,7 +216,7 @@
     padding-bottom: 56.25%;
     margin-top: 50px;
   }
-  .video-container iframe, .video-container video {
+  .video-container iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -437,65 +437,6 @@
     transform: scale(1.1);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
   }
-
-  /* Estilos para el reproductor de video personalizado */
-  .custom-video-player {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #000;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .video-title {
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    padding: 10px;
-    font-size: 1.2em;
-    text-align: center;
-  }
-
-  .video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-  }
-
-  .video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .video-controls {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .play-pause-btn, .fullscreen-btn {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-
-  .video-progress {
-    flex-grow: 1;
-    margin: 0 10px;
-  }
 </style>
 </head>
 <body>
@@ -556,16 +497,8 @@
       <div class="app-preview-title">Explora nuestro extenso catálogo de películas y series</div>
     </div>
 
-    <div class="custom-video-player">
-      <div class="video-title">Descarga Play+ - Nueva Aplicación de Películas Gratis</div>
-      <div class="video-container">
-        <video id="main-video" src="https://github.com/playgoapp/archivos/releases/download/Videos/Descargar.Play_.Go_.Nueva.Aplicacion.De.Peliculas.Gratis.Sin.Publicidad.Para.Android.2023_.720P_60FPS.mp4"></video>
-        <div class="video-controls">
-          <button class="play-pause-btn">▶</button>
-          <input type="range" class="video-progress" min="0" max="100" value="0">
-          <button class="fullscreen-btn">⛶</button>
-        </div>
-      </div>
+    <div class="video-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/en26CmaNEtQ" title="Play+ App Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -672,59 +605,6 @@
           window.open(e.target.href, '_blank');
         }, 1000);
       });
-
-      // Funcionalidad del reproductor de video personalizado
-      const video = document.getElementById('main-video');
-      const playPauseBtn = document.querySelector('.play-pause-btn');
-      const fullscreenBtn = document.querySelector('.fullscreen-btn');
-      const progress = document.querySelector('.video-progress');
-
-      playPauseBtn.addEventListener('click', togglePlayPause);
-      fullscreenBtn.addEventListener('click', toggleFullscreen);
-      video.addEventListener('timeupdate', updateProgress);
-      progress.addEventListener('input', setVideoProgress);
-
-      function togglePlayPause() {
-        if (video.paused) {
-          video.play();
-          playPauseBtn.textContent = '⏸';
-        } else {
-          video.pause();
-          playPauseBtn.textContent = '▶';
-        }
-      }
-
-      function toggleFullscreen() {
-        if (!document.fullscreenElement) {
-          if (video.requestFullscreen) {
-            video.requestFullscreen();
-          } else if (video.mozRequestFullScreen) {
-            video.mozRequestFullScreen();
-          } else if (video.webkitRequestFullscreen)  {
-            video.webkitRequestFullscreen();
-          } else if (video.msRequestFullscreen) {
-            video.msRequestFullscreen();
-          }
-        } else {
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          }
-        }
-      }
-
-      function updateProgress() {
-        progress.value = (video.currentTime / video.duration) * 100;
-      }
-
-      function setVideoProgress() {
-        video.currentTime = (progress.value / 100) * video.duration;
-      }
     });
   </script>
 </body>
