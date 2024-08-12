@@ -1,229 +1,132 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Play! Go Oficial</title>
-    <link rel="icon" href="https://cdn6.aptoide.com/imgs/a/8/4/a846838d76905d9ce536941ca55ab707_icon.png?w=128">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata">
-  <style>
-    /* Estilos generales */
-body {
-      font-family: 'Crimson Pro', serif;
-      font-family: 'Literata', serif;
-      margin: 0;
-      padding: 0;
-      background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20190223/ourmid/pngtree-black-minimalist-atmospheric-wooden-background-backgroundwooden-backgroundtree-texture-image_77053.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      color: #fff;
+<!DOCTYPE html><html><head><base href="https://playplus.app/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play+ | Descarga la mejor app de películas</title>
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #fff;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  header {
+    text-align: center;
+    padding: 50px 0;
+  }
+  h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  .logo {
+    width: 150px;
+    height: 150px;
+  }
+  .cta-button {
+    display: inline-block;
+    background-color: #e50914;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  .cta-button:hover {
+    background-color: #f40612;
+  }
+  .features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 50px;
+  }
+  .feature {
+    flex-basis: 30%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .feature svg {
+    width: 80px;
+    height: 80px;
+    fill: #fff;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 768px) {
+    .feature {
+      flex-basis: 100%;
     }
-
-    .scroll-view {
-      padding-left: 20px;
-      padding-right: 20px;
-      padding-bottom: 10px;
-    }
-
-    .app-logo {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-    
-     .app-logo2 {
-      width: 225px;
-      height: 225px;
-      display: block;
-      margin: 0 auto;
-    }
-    
-     .app-logo3 {
-      width: 220px;
-      height: 35px;
-      display: block;
-      margin: 0 auto;
-    }
-    
-
-    .main-text {
-      text-align: center;
-      font-size: 25px;
-    }
-
-    .sub-text {
-      text-align: center;
-      font-size: px;
-      color: #616161;
-    }
-
-    .download-button {
-      width: 200px;
-      height: 45px;
-      padding: 8px;
-      background-color: #0000ff;
-      text-align: center;
-      margin: 20px auto;
-      border-radius: 10px;
-      color: #FFFFFF;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-    }
-
-    .image-container {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .user-count {
-      text-align: center;
-      font-size: 30px;
-    }
-
-    .user-text {
-      text-align: center;
-      font-size: 20px;
-      color: #757575;
-    }
-
-    .price-container {
-      margin-top: 50px;
-      text-align: center;
-    }
-
-    .copyright {
-      text-align: center;
-      font-size: 14px;
-      color: #757575;
-    }
-    @keyframes parpadeo {
-  25% { opacity: 1.0; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1.0; }
-    }
-
-    .download-button {
-  animation: parpadeo 4s ease-in-out infinite;
-    }
-    
-    .toolbar img {
-  animation: parpadeo 10s ease-in-out infinite;
-    }
-    
-    /* Estilos del toolbar */
-    .toolbar {
-      background-color: #00000000;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-    }
-
-    .toolbar img {
-      width: 50px;
-      height: 50px;
-      opacity: 1;
-      vertical-align: middle;
-      float: left; /* O utiliza display: inline-block; */
-      margin-right: 10px; /* Espacio entre el icono y el texto */
-    }
-
-    .toolbar h1 {
-      margin: 0;
-      display: inline-block;
-      vertical-align: middle;
-    }
-       </style>
-      </head>
-          <body>
-      <div class="toolbar">
-      <img src="https://cdn6.aptoide.com/imgs/a/8/4/a846838d76905d9ce536941ca55ab707_icon.png?w=128" alt="PlayGo!">
-
-       </div>
-    </style>
+  }
+  .app-preview {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .app-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+</style>
 </head>
 <body>
-  <div id="linear1">
-    <div class="scroll-view">
-    	<br></br>
-      <img src="https://cdn6.aptoide.com/imgs/a/8/4/a846838d76905d9ce536941ca55ab707_icon.png" alt="PlayGo!" class="app-logo">
-      <br></br>
-      <img src="https://raw.githubusercontent.com/playgoapp/archivos/main/IMG_20240116_143111.png" alt="PlayGo!" class="app-logo3">
-      <p class="main-text"><strong>La App mas famosa de peliculas gratis esta de vuelta en 2024!</strong></p>
-      
-      <div class="image-container">
+  <div class="container">
+    <header>
+      <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" fill="#e50914"></circle>
+        <path d="M35 30v40l40-20z" fill="#fff"></path>
+      </svg>
+      <h1>Play+</h1>
+      <p>La mejor app para ver tus películas favoritas</p>
+      <a href="https://playplus.app/download" class="cta-button">Descargar ahora</a>
+    </header>
 
-        <a href="https://github.com/playgoapp/archivos/releases/download/archivos/Play.Go_3.0.apk" class="download-button"><strong>Descargar Gratis! V3.0 27MB</strong></a>
-      <div class="image-container">
-
-        <p class="main-text"><strong>©OnyxDev</strong></p>
-
-</div>
-    </style>
-</head>
-<body>
-  <div id="linear1">
-    <div class="scroll-view">
-      <br></br>
-      <p class="main-text"><strong>Ya puedes unirte a nuestro grupo de whatsapp oficial</strong></p>
-      <a href="https://chat.whatsapp.com/KlkZgXlx01aHxkokD3m2pD" class="download-button"><strong>Ingresar! Grupo De Whatsapp</strong></a>
-      <div class="image-container">
-
-
-        
-        
-
-        </div>
-    </style>
-</head>
-<body>
-  <div id="linear1">
-    <div class="scroll-view">
-      <br></br>
-      <p class="main-text"><strong>Siguenos en nuestro canal oficial de whatsapp y informate de novedades</strong></p>
-      <a href="https://whatsapp.com/channel/0029VaSTj8i6xCSUcChevG3b" class="download-button"><strong>Canal Oficial De Whatsapp</strong></a>
-      <div class="image-container">
-
-
-
-        </div>
-    </style>
-</head>
-<body>
-  <div id="linear1">
-    <div class="scroll-view">
-      <br></br>
-      <p class="main-text"><strong>Siguenos en nuestro canal oficial de Telegram y solicita tus peliculas favoritas⭐</strong></p>
-      <a href="https://t.me/PlayGoOficial" class="download-button"><strong>Canal Oficial De Telegram</strong></a>
-      <div class="image-container">
-        
-    
-       <p class="user-count"><strong>+99.458Mil Usuarios Activos</strong></p>
-      <p class="user-text">Únase a la comunidad de más de 99mil usuarios activos</p>
-      <div class="image-container">
-     </div>
-      <p class="user-count"><strong>Peliculas</strong></p>
-         <div class="image-container">
-        <img src="https://raw.githubusercontent.com/playgoapp/archivos/main/Screenshot_20240404-222057.png" alt="PlayGo" class="app-logo">
-      <p class="user-text">Descubre miles de películas y series de calidad</p>
+    <div class="features">
+      <div class="feature">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h5v2h8v-2h5c1.11 0 1.99-.89 1.99-2L23 5c0-1.11-.89-2-2-2zm0 14H3V5h18v12z"></path>
+        </svg>
+        <h3>Amplio catálogo</h3>
+        <p>Miles de películas y series a tu alcance</p>
       </div>
-      <p class="user-count"><strong>Redes Sociales</strong></p>
-       <div class="image-container">
-       <img src="https://github.com/playgoapp/archivos/releases/download/archivos/Screenshot_20240116-144309.jpg" alt="PlayGo" class="app-logo">
-      <p class="user-text">Siguenos en nuestras Redes oficiales y solicita tu contenido favorito😉</p>
+      <div class="feature">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"></path>
+        </svg>
+        <h3>Alta calidad</h3>
+        <p>Disfruta del contenido en HD y 4K</p>
       </div>
-      <p class="user-count"><strong>Gratuito</strong></p>
-      <div class="image-container">
-        <p class="user-text">Nuestro servicio es totalmente gratuito no cobramos y tampoco ponemos anuncios para darte la mejor experiencia disfruta de el mejor cine en nuestros servidores propios de alta velocidad😎</p>
-      </div>
-      <div id="linear3">
-      	<br></br>
-        <p class="copyright">© 2024 OnyxDev</p>
+      <div class="feature">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 15c-4.42 0-8-2.69-8-6s3.58-6 8-6 8 2.69 8 6-3.58 6-8 6z"></path>
+        </svg>
+        <h3>Offline</h3>
+        <p>Descarga y ve sin conexión</p>
       </div>
     </div>
+
+    <div class="app-preview">
+      <img src="https://playplus.app/app-preview.jpg" alt="Interfaz de la app Play+ mostrando una selección de películas populares en un diseño moderno y atractivo. La pantalla muestra filas de portadas de películas organizadas por género, con una barra de navegación en la parte inferior y un menú desplegable en la esquina superior izquierda." width="800" height="450">
+    </div>
   </div>
-</body>
-  </html>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const ctaButton = document.querySelector('.cta-button');
+      ctaButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('¡Gracias por tu interés! La descarga comenzará en breve.');
+        setTimeout(() => {
+          window.location.href = e.target.href;
+        }, 1000);
+      });
+    });
+  </script>
+
+</body></html>
