@@ -690,3 +690,139 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><base href="https://playplus.app/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play+ | Descarga la mejor app de películas</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23e50914'/%3E%3Cpath d='M35 30v40l40-20z' fill='%23fff'/%3E%3C/svg%3E">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://playplus.app/">
+<meta property="og:title" content="Play+ | Descarga la mejor app de películas">
+<meta property="og:description" content="Disfruta de miles de películas y series en alta calidad con Play+. ¡Descárgala ahora!">
+<meta property="og:image" content="https://raw.githubusercontent.com/playgoapp/archivos/main/logo_playplus.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://playplus.app/">
+<meta property="twitter:title" content="Play+ | Descarga la mejor app de películas">
+<meta property="twitter:description" content="Disfruta de miles de películas y series en alta calidad con Play+. ¡Descárgala ahora!">
+<meta property="twitter:image" content="https://raw.githubusercontent.com/playgoapp/archivos/main/logo_playplus.png">
+
+<style>
+  /* ... (previous CSS styles remain unchanged) ... */
+
+  .music-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .music-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .music-button.playing {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .music-button svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+  }
+</style>
+</head>
+<body>
+  <!-- ... (previous HTML content remains unchanged) ... -->
+
+  <button class="music-button" id="musicButton" aria-label="Reproducir/Pausar música">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+  </button>
+
+  <audio id="backgroundMusic" loop>
+    <source src="https://github.com/playgoapp/archivos/releases/download/Videos/LALA.Instrumental.MP3_160K.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <script>
+    // ... (previous JavaScript code remains unchanged) ...
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const musicButton = document.getElementById('musicButton');
+      const backgroundMusic = document.getElementById('backgroundMusic');
+      let isPlaying = false;
+
+      musicButton.addEventListener('click', () => {
+        if (isPlaying) {
+          backgroundMusic.pause();
+          musicButton.classList.remove('playing');
+          musicButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+        } else {
+          backgroundMusic.play();
+          musicButton.classList.add('playing');
+          musicButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Autoplay music when the page loads
+      backgroundMusic.play().catch(error => {
+        console.log("Autoplay was prevented. User interaction is required to start the music.");
+      });
+      isPlaying = true;
+      musicButton.classList.add('playing');
+      musicButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+    });
+  </script>
+</body>
+</html>
