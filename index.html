@@ -1,24 +1,46 @@
-<!DOCTYPE html><html><head><base href="https://playplus.app/">
+<html><head><base href="https://playplus.app/%20elimina%20el%20apartado%20del%20pie%20de%20la%20pagina">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Play+ | Descarga la mejor app de películas</title>
 <style>
+  :root {
+    --bg-color: #1e3c72;
+    --text-color: #fff;
+    --header-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    --feature-bg: rgba(255, 255, 255, 0.1);
+    --footer-bg: rgba(0, 0, 0, 0.5);
+  }
+
+  body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+    --feature-bg: rgba(255, 255, 255, 0.05);
+    --footer-bg: rgba(0, 0, 0, 0.8);
+  }
+
   body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: #fff;
+    background: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    flex-grow: 1;
   }
   header {
     text-align: center;
     padding: 50px 0;
+    background: var(--header-bg);
   }
   h1 {
     font-size: 3em;
@@ -30,16 +52,72 @@
   }
   .cta-button {
     display: inline-block;
-    background-color: #e50914;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: #fff;
+    padding: 15px 40px;
+    font-size: 1.4em;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 65, 108, 0.6);
+  }
+  .cta-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 10px rgba(255, 65, 108, 0.4);
+  }
+  .cta-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: all 0.5s;
+  }
+  .cta-button:hover::before {
+    left: 100%;
+  }
+  .whatsapp-button, .telegram-button, .youtube-button, .facebook-button {
+    display: inline-block;
     color: #fff;
     padding: 15px 30px;
     font-size: 1.2em;
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 10px;
   }
-  .cta-button:hover {
-    background-color: #f40612;
+  .whatsapp-button {
+    background-color: #25D366;
+  }
+  .telegram-button {
+    background-color: #0088cc;
+  }
+  .youtube-button {
+    background-color: #FF0000;
+  }
+  .facebook-button {
+    background-color: #1877F2;
+  }
+  .whatsapp-button:hover, .telegram-button:hover, .youtube-button:hover, .facebook-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   }
   .features {
     display: flex;
@@ -51,11 +129,18 @@
     flex-basis: 30%;
     text-align: center;
     margin-bottom: 30px;
+    background: var(--feature-bg);
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  .feature:hover {
+    transform: translateY(-10px);
   }
   .feature svg {
     width: 80px;
     height: 80px;
-    fill: #fff;
+    fill: var(--text-color);
     margin-bottom: 20px;
   }
   @media (max-width: 768px) {
@@ -65,46 +150,132 @@
   }
   .app-preview {
     text-align: center;
-    margin-top: 50px;
+    margin: 50px auto;
+    padding-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 500px;
+  }
+  .app-preview:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .app-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    z-index: 1;
   }
   .app-preview img {
     max-width: 100%;
     height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .app-preview:hover img {
+    transform: scale(1.05);
+  }
+  .app-preview-title {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    font-size: 1.2em;
+    z-index: 2;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    margin-top: 50px;
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+  }
+  footer {
+    background-color: var(--footer-bg);
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+  }
+  .dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: var(--text-color);
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .dark-mode-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  body.dark-mode .dark-mode-toggle {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  body.dark-mode .dark-mode-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 </style>
 </head>
 <body>
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">Modo Oscuro</button>
   <div class="container">
     <header>
       <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="45" fill="#e50914"></circle>
-        <path d="M35 30v40l40-20z" fill="#fff"></path>
+        <circle cx="50" cy="50" r="45" fill="#e50914"/>
+        <path d="M35 30v40l40-20z" fill="#fff"/>
       </svg>
       <h1>Play+</h1>
       <p>La mejor app para ver tus películas favoritas</p>
       <a href="https://github.com/playgoapp/archivos/releases/download/archivos/Play.Go_3.0.apk" class="cta-button">Descargar ahora</a>
+      <div>
+        <a href="https://whatsapp.com/channel/0029VaSTj8i6xCSUcChevG3b" class="whatsapp-button">Seguir canal de WhatsApp</a>
+        <a href="https://t.me/PlayGoOficial" class="telegram-button">Seguir canal de Telegram</a>
+        <a href="https://youtube.com/@tntprojects26" class="youtube-button">Suscribirse en YouTube</a>
+        <a href="https://www.facebook.com/BryanMusicNFOficial?mibextid=ZbWKwL" class="facebook-button">Seguir en Facebook</a>
+      </div>
     </header>
 
     <div class="features">
       <div class="feature">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h5v2h8v-2h5c1.11 0 1.99-.89 1.99-2L23 5c0-1.11-.89-2-2-2zm0 14H3V5h18v12z"></path>
+          <path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h5v2h8v-2h5c1.11 0 1.99-.89 1.99-2L23 5c0-1.11-.89-2-2-2zm0 14H3V5h18v12z"/>
         </svg>
         <h3>Amplio catálogo</h3>
         <p>Miles de películas y series a tu alcance</p>
       </div>
       <div class="feature">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"></path>
+          <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
         </svg>
         <h3>Alta calidad</h3>
         <p>Disfruta del contenido en HD y 4K</p>
       </div>
       <div class="feature">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 15c-4.42 0-8-2.69-8-6s3.58-6 8-6 8 2.69 8 6-3.58 6-8 6z"></path>
+          <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 15c-4.42 0-8-2.69-8-6s3.58-6 8-6 8 2.69 8 6-3.58 6-8 6z"/>
         </svg>
         <h3>Offline</h3>
         <p>Descarga y ve sin conexión</p>
@@ -112,12 +283,39 @@
     </div>
 
     <div class="app-preview">
-      <img src="https://raw.githubusercontent.com/playgoapp/archivos/main/Screenshot_20240404-222057.png" alt="Interfaz de la app Play+ mostrando una selección de películas populares en un diseño moderno y atractivo. La pantalla muestra filas de portadas de películas organizadas por género, con una barra de navegación en la parte inferior y un menú desplegable en la esquina superior izquierda." width="800" height="450">
+      <img src="https://raw.githubusercontent.com/playgoapp/archivos/main/Screenshot_20240404-222057.png" alt="Interfaz de la app Play+ mostrando una selección de películas populares" width="500" height="281">
+      <div class="app-preview-title">Explora nuestro extenso catálogo de películas y series</div>
+    </div>
+
+    <div class="video-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/en26CmaNEtQ" title="Play+ App Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 
+  <footer>
+    <p>© Copyright OnyxDev</p>
+  </footer>
+
   <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const darkModeToggle = document.querySelector('.dark-mode-toggle');
+      if (document.body.classList.contains('dark-mode')) {
+        darkModeToggle.textContent = 'Modo Claro';
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        darkModeToggle.textContent = 'Modo Oscuro';
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', (event) => {
+      const darkMode = localStorage.getItem('darkMode');
+      if (darkMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.dark-mode-toggle').textContent = 'Modo Claro';
+      }
+
       const ctaButton = document.querySelector('.cta-button');
       ctaButton.addEventListener('click', (e) => {
         e.preventDefault();
@@ -126,9 +324,60 @@
           window.location.href = e.target.href;
         }, 1000);
       });
+
+      const whatsappButton = document.querySelector('.whatsapp-button');
+      whatsappButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Te estamos redirigiendo al canal de WhatsApp. ¡Gracias por seguirnos!');
+        setTimeout(() => {
+          window.open(e.target.href, '_blank');
+        }, 1000);
+      });
+
+      const telegramButton = document.querySelector('.telegram-button');
+      telegramButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Te estamos redirigiendo al canal de Telegram. ¡Gracias por seguirnos!');
+        setTimeout(() => {
+          window.open(e.target.href, '_blank');
+        }, 1000);
+      });
+
+      const youtubeButton = document.querySelector('.youtube-button');
+      youtubeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Te estamos redirigiendo al canal de YouTube. ¡Gracias por suscribirte!');
+        setTimeout(() => {
+          window.open(e.target.href, '_blank');
+        }, 1000);
+      });
+
+      const facebookButton = document.querySelector('.facebook-button');
+      facebookButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Te estamos redirigiendo a la página de Facebook. ¡Gracias por seguirnos!');
+        setTimeout(() => {
+          window.open(e.target.href, '_blank');
+        }, 1000);
+      });
+
+      // Añadir efecto de zoom suave a la imagen de la app
+      const appPreview = document.querySelector('.app-preview');
+      appPreview.addEventListener('mousemove', (e) => {
+        const { left, top, width, height } = appPreview.getBoundingClientRect();
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+        
+        const img = appPreview.querySelector('img');
+        img.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+        img.style.transform = `scale(1.1)`;
+      });
+
+      appPreview.addEventListener('mouseleave', () => {
+        const img = appPreview.querySelector('img');
+        img.style.transform = 'scale(1)';
+      });
     });
   </script>
-
-</body></html>
-
-
+</body>
+</html>
