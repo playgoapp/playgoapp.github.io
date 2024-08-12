@@ -671,4 +671,78 @@
 
       // Agregar evento de clic al botón flotante de WhatsApp
       const floatingWhatsappButton = document.querySelector('.floating-whatsapp a');
-      floatingWhatsappButton.addEventListener('click',
+      floatingWhatsappButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Te estamos redirigiendo al grupo de WhatsApp. ¡Gracias por unirte!');
+        setTimeout(() => {
+          window.open(e.target.href, '_blank');
+        }, 1000);
+      });
+
+      // Funcionalidad del reproductor de video personalizado
+      const video = document.getElementById('main-video');
+      const playPauseBtn = document.querySelector('.play-pause-btn');
+      const fullscreenBtn = document.querySelector('.fullscreen-btn');
+      const progress = document.querySelector('.video-progress');
+      const viewCount = document.querySelector('.view-count');
+
+      let views = 0;
+
+      playPauseBtn.addEventListener('click', togglePlayPause);
+      fullscreenBtn.addEventListener('click', toggleFullscreen);
+      video.addEventListener('timeupdate', updateProgress);
+      progress.addEventListener('input', setVideoProgress);
+      video.addEventListener('play', incrementViews);
+
+      function togglePlayPause() {
+        if (video.paused) {
+          video.play();
+          playPauseBtn.textContent = '⏸';
+        } else {
+          video.pause();
+          playPauseBtn.textContent = '▶';
+        }
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.mozRequestFullScreen) {
+            video.mozRequestFullScreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
+        }
+      }
+
+      function updateProgress() {
+        const value = (video.currentTime / video.duration) * 100;
+        progress.value = value;
+      }
+
+      function setVideoProgress() {
+        const time = (progress.value / 100) * video.duration;
+        video.currentTime = time;
+      }
+
+      function incrementViews() {
+        views++;
+        viewCount.textContent = `Vistas: ${views}`;
+      }
+    });
+  </script>
+</body>
+</html>
