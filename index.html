@@ -18,6 +18,9 @@
 <meta property="twitter:description" content="Disfruta de miles de películas y series en alta calidad con Play+. ¡Descárgala ahora!">
 <meta property="twitter:image" content="https://raw.githubusercontent.com/playgoapp/archivos/main/logo_playplus.png">
 
+<link href="https://vjs.zencdn.net/7.20.3/video-js.min.css" rel="stylesheet" />
+<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+
 <style>
   :root {
     --bg-color: #1e3c72;
@@ -216,14 +219,14 @@
     padding-bottom: 56.25%;
     margin-top: 50px;
   }
-  .video-container iframe {
+  .video-container .video-js {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border: none;
     border-radius: 10px;
+    overflow: hidden;
   }
   footer {
     background-color: var(--footer-bg);
@@ -437,6 +440,52 @@
     transform: scale(1.1);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
   }
+
+  /* Estilos personalizados para el reproductor de video */
+  .video-js .vjs-big-play-button {
+    background-color: rgba(255, 0, 0, 0.7);
+    border-color: #fff;
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .video-js:hover .vjs-big-play-button,
+  .video-js .vjs-big-play-button:focus {
+    background-color: rgba(255, 0, 0, 0.9);
+  }
+
+  .video-js .vjs-control-bar {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .video-js .vjs-play-progress {
+    background-color: #ff0000;
+  }
+
+  .video-js .vjs-volume-level {
+    background-color: #ff0000;
+  }
+
+  .video-js .vjs-load-progress div {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .video-js .vjs-slider {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .video-js .vjs-slider:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .vjs-poster {
+    background-size: cover;
+  }
 </style>
 </head>
 <body>
@@ -498,7 +547,22 @@
     </div>
 
     <div class="video-container">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/en26CmaNEtQ" title="Play+ App Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <video
+        id="my-video"
+        class="video-js vjs-default-skin"
+        controls
+        preload="auto"
+        width="640"
+        height="360"
+        poster="https://raw.githubusercontent.com/playgoapp/archivos/main/logo_playplus.png"
+        data-setup='{}'
+      >
+        <source src="https://github.com/playgoapp/archivos/releases/download/Videos/Descargar.Play_.Go_.Nueva.Aplicacion.De.Peliculas.Gratis.Sin.Publicidad.Para.Android.2023_.720P_60FPS.mp4" type="video/mp4" />
+        <p class="vjs-no-js">
+          Para ver este video, por favor habilita JavaScript y considera actualizar a un navegador web que
+          <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
+        </p>
+      </video>
     </div>
   </div>
 
@@ -604,6 +668,100 @@
         setTimeout(() => {
           window.open(e.target.href, '_blank');
         }, 1000);
+      });
+
+      // Inicializar el reproductor de video
+      var player = videojs('my-video', {
+        fluid: true,
+        responsive: true,
+        playbackRates: [0.5, 1, 1.5, 2],
+        controlBar: {
+          children: [
+            'playToggle',
+            'volumePanel',
+            'currentTimeDisplay',
+            'timeDivider',
+            'durationDisplay',
+            'progressControl',
+            'liveDisplay',
+            'remainingTimeDisplay',
+            'customControlSpacer',
+            'playbackRateMenuButton',
+            'chaptersButton',
+            'descriptionsButton',
+            'subsCapsButton',
+            'audioTrackButton',
+            'fullscreenToggle'
+          ]
+        }
+      });
+
+      // Agregar evento de carga de metadatos
+      player.on('loadedmetadata', function() {
+        console.log('Video metadata loaded');
+      });
+
+      // Agregar evento de finalización del video
+      player.on('ended', function() {
+        console.log('Video playback ended');
+        // Aquí puedes agregar lógica adicional, como mostrar un mensaje o reproducir el siguiente video
+      });
+
+      // Agregar evento de cambio de volumen
+      player.on('volumechange', function() {
+        console.log('Volume changed to: ' + player.volume());
+      });
+
+      // Agregar evento de cambio de velocidad de reproducción
+      player.on('ratechange', function() {
+        console.log('Playback rate changed to: ' + player.playbackRate());
+      });
+
+      // Agregar evento de entrada en pantalla completa
+      player.on('fullscreenchange', function() {
+        if (player.isFullscreen()) {
+          console.log('Entered fullscreen mode');
+        } else {
+          console.log('Exited fullscreen mode');
+        }
+      });
+
+      // Personalizar el comportamiento del botón de play/pause
+      const playToggle = player.getChild('controlBar').getChild('playToggle');
+      playToggle.on('click', function() {
+        if (player.paused()) {
+          console.log('Video resumed');
+        } else {
+          console.log('Video paused');
+        }
+      });
+
+      // Añadir un botón personalizado al control bar
+      const Button = videojs.getComponent('Button');
+      const MyButton = videojs.extend(Button, {
+        constructor: function() {
+          Button.apply(this, arguments);
+          this.controlText("Mi Botón");
+        },
+        handleClick: function() {
+          alert('¡Has hecho clic en el botón personalizado!');
+        }
+      });
+      videojs.registerComponent('MyButton', MyButton);
+      player.getChild('controlBar').addChild('myButton', {});
+
+      // Personalizar el aspecto del reproductor
+      player.addClass('vjs-matrix');
+
+      // Añadir un overlay al video
+      player.overlay({
+        content: 'Play+ - La mejor experiencia de streaming',
+        debug: true,
+        overlays: [{
+          start: 'playing',
+          end: 'paused',
+          align: 'top-left'
+        }]
       });
     });
   </script>
