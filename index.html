@@ -496,11 +496,6 @@
     flex-grow: 1;
     margin: 0 10px;
   }
-
-  .view-count {
-    color: #fff;
-    font-size: 0.9em;
-  }
 </style>
 </head>
 <body>
@@ -569,7 +564,6 @@
           <button class="play-pause-btn">▶</button>
           <input type="range" class="video-progress" min="0" max="100" value="0">
           <button class="fullscreen-btn">⛶</button>
-          <span class="view-count">Vistas: 0</span>
         </div>
       </div>
     </div>
@@ -684,15 +678,11 @@
       const playPauseBtn = document.querySelector('.play-pause-btn');
       const fullscreenBtn = document.querySelector('.fullscreen-btn');
       const progress = document.querySelector('.video-progress');
-      const viewCount = document.querySelector('.view-count');
-
-      let views = 0;
 
       playPauseBtn.addEventListener('click', togglePlayPause);
       fullscreenBtn.addEventListener('click', toggleFullscreen);
       video.addEventListener('timeupdate', updateProgress);
       progress.addEventListener('input', setVideoProgress);
-      video.addEventListener('play', incrementViews);
 
       function togglePlayPause() {
         if (video.paused) {
@@ -710,7 +700,7 @@
             video.requestFullscreen();
           } else if (video.mozRequestFullScreen) {
             video.mozRequestFullScreen();
-          } else if (video.webkitRequestFullscreen) {
+          } else if (video.webkitRequestFullscreen)  {
             video.webkitRequestFullscreen();
           } else if (video.msRequestFullscreen) {
             video.msRequestFullscreen();
@@ -729,18 +719,11 @@
       }
 
       function updateProgress() {
-        const value = (video.currentTime / video.duration) * 100;
-        progress.value = value;
+        progress.value = (video.currentTime / video.duration) * 100;
       }
 
       function setVideoProgress() {
-        const time = (progress.value / 100) * video.duration;
-        video.currentTime = time;
-      }
-
-      function incrementViews() {
-        views++;
-        viewCount.textContent = `Vistas: ${views}`;
+        video.currentTime = (progress.value / 100) * video.duration;
       }
     });
   </script>
