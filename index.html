@@ -18,9 +18,6 @@
 <meta property="twitter:description" content="Disfruta de miles de películas y series en alta calidad con Play+. ¡Descárgala ahora!">
 <meta property="twitter:image" content="https://raw.githubusercontent.com/playgoapp/archivos/main/logo_playplus.png">
 
-<link href="https://vjs.zencdn.net/7.20.3/video-js.min.css" rel="stylesheet" />
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-
 <style>
   :root {
     --bg-color: #1e3c72;
@@ -219,14 +216,14 @@
     padding-bottom: 56.25%;
     margin-top: 50px;
   }
-  .video-container .video-js {
+  .video-container iframe, .video-container video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    border: none;
     border-radius: 10px;
-    overflow: hidden;
   }
   footer {
     background-color: var(--footer-bg);
@@ -441,50 +438,68 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
   }
 
-  /* Estilos personalizados para el reproductor de video */
-  .video-js .vjs-big-play-button {
-    background-color: rgba(255, 0, 0, 0.7);
-    border-color: #fff;
-    border-radius: 50%;
-    height: 80px;
-    width: 80px;
-    line-height: 80px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  /* Estilos para el reproductor de video personalizado */
+  .custom-video-player {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .video-js:hover .vjs-big-play-button,
-  .video-js .vjs-big-play-button:focus {
-    background-color: rgba(255, 0, 0, 0.9);
-  }
-
-  .video-js .vjs-control-bar {
+  .video-title {
     background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    font-size: 1.2em;
+    text-align: center;
   }
 
-  .video-js .vjs-play-progress {
-    background-color: #ff0000;
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
   }
 
-  .video-js .vjs-volume-level {
-    background-color: #ff0000;
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
-  .video-js .vjs-load-progress div {
-    background: rgba(255, 255, 255, 0.3);
+  .video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
   }
 
-  .video-js .vjs-slider {
-    background-color: rgba(255, 255, 255, 0.3);
+  .play-pause-btn, .fullscreen-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2em;
+    cursor: pointer;
   }
 
-  .video-js .vjs-slider:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+  .video-progress {
+    flex-grow: 1;
+    margin: 0 10px;
   }
 
-  .vjs-poster {
-    background-size: cover;
+  .view-count {
+    color: #fff;
+    font-size: 0.9em;
   }
 </style>
 </head>
@@ -546,23 +561,17 @@
       <div class="app-preview-title">Explora nuestro extenso catálogo de películas y series</div>
     </div>
 
-    <div class="video-container">
-      <video
-        id="my-video"
-        class="video-js vjs-default-skin"
-        controls
-        preload="auto"
-        width="640"
-        height="360"
-        poster="https://raw.githubusercontent.com/playgoapp/archivos/main/logo_playplus.png"
-        data-setup='{}'
-      >
-        <source src="https://github.com/playgoapp/archivos/releases/download/Videos/Descargar.Play_.Go_.Nueva.Aplicacion.De.Peliculas.Gratis.Sin.Publicidad.Para.Android.2023_.720P_60FPS.mp4" type="video/mp4" />
-        <p class="vjs-no-js">
-          Para ver este video, por favor habilita JavaScript y considera actualizar a un navegador web que
-          <a href="https://videojs.com/html5-video-support/" target="_blank">soporte video HTML5</a>
-        </p>
-      </video>
+    <div class="custom-video-player">
+      <div class="video-title">Descarga Play+ - Nueva Aplicación de Películas Gratis</div>
+      <div class="video-container">
+        <video id="main-video" src="https://github.com/playgoapp/archivos/releases/download/Videos/Descargar.Play_.Go_.Nueva.Aplicacion.De.Peliculas.Gratis.Sin.Publicidad.Para.Android.2023_.720P_60FPS.mp4"></video>
+        <div class="video-controls">
+          <button class="play-pause-btn">▶</button>
+          <input type="range" class="video-progress" min="0" max="100" value="0">
+          <button class="fullscreen-btn">⛶</button>
+          <span class="view-count">Vistas: 0</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -662,108 +671,4 @@
 
       // Agregar evento de clic al botón flotante de WhatsApp
       const floatingWhatsappButton = document.querySelector('.floating-whatsapp a');
-      floatingWhatsappButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Te estamos redirigiendo al grupo de WhatsApp. ¡Gracias por unirte!');
-        setTimeout(() => {
-          window.open(e.target.href, '_blank');
-        }, 1000);
-      });
-
-      // Inicializar el reproductor de video
-      var player = videojs('my-video', {
-        fluid: true,
-        responsive: true,
-        playbackRates: [0.5, 1, 1.5, 2],
-        controlBar: {
-          children: [
-            'playToggle',
-            'volumePanel',
-            'currentTimeDisplay',
-            'timeDivider',
-            'durationDisplay',
-            'progressControl',
-            'liveDisplay',
-            'remainingTimeDisplay',
-            'customControlSpacer',
-            'playbackRateMenuButton',
-            'chaptersButton',
-            'descriptionsButton',
-            'subsCapsButton',
-            'audioTrackButton',
-            'fullscreenToggle'
-          ]
-        }
-      });
-
-      // Agregar evento de carga de metadatos
-      player.on('loadedmetadata', function() {
-        console.log('Video metadata loaded');
-      });
-
-      // Agregar evento de finalización del video
-      player.on('ended', function() {
-        console.log('Video playback ended');
-        // Aquí puedes agregar lógica adicional, como mostrar un mensaje o reproducir el siguiente video
-      });
-
-      // Agregar evento de cambio de volumen
-      player.on('volumechange', function() {
-        console.log('Volume changed to: ' + player.volume());
-      });
-
-      // Agregar evento de cambio de velocidad de reproducción
-      player.on('ratechange', function() {
-        console.log('Playback rate changed to: ' + player.playbackRate());
-      });
-
-      // Agregar evento de entrada en pantalla completa
-      player.on('fullscreenchange', function() {
-        if (player.isFullscreen()) {
-          console.log('Entered fullscreen mode');
-        } else {
-          console.log('Exited fullscreen mode');
-        }
-      });
-
-      // Personalizar el comportamiento del botón de play/pause
-      const playToggle = player.getChild('controlBar').getChild('playToggle');
-      playToggle.on('click', function() {
-        if (player.paused()) {
-          console.log('Video resumed');
-        } else {
-          console.log('Video paused');
-        }
-      });
-
-      // Añadir un botón personalizado al control bar
-      const Button = videojs.getComponent('Button');
-      const MyButton = videojs.extend(Button, {
-        constructor: function() {
-          Button.apply(this, arguments);
-          this.controlText("Mi Botón");
-        },
-        handleClick: function() {
-          alert('¡Has hecho clic en el botón personalizado!');
-        }
-      });
-      videojs.registerComponent('MyButton', MyButton);
-      player.getChild('controlBar').addChild('myButton', {});
-
-      // Personalizar el aspecto del reproductor
-      player.addClass('vjs-matrix');
-
-      // Añadir un overlay al video
-      player.overlay({
-        content: 'Play+ - La mejor experiencia de streaming',
-        debug: true,
-        overlays: [{
-          start: 'playing',
-          end: 'paused',
-          align: 'top-left'
-        }]
-      });
-    });
-  </script>
-</body>
-</html>
+      floatingWhatsappButton.addEventListener('click',
