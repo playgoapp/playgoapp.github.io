@@ -1,4 +1,4 @@
-<html><head><base href="https://playplus.app/%20elimina%20el%20apartado%20del%20pie%20de%20la%20pagina">
+<html><head><base href="https://playplus.app/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Play+ | Descarga la mejor app de películas</title>
@@ -315,6 +315,58 @@
       color: #ffff00;
     }
   }
+
+  .footer-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .footer-profile:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+  }
+
+  .footer-profile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid #fff;
+    transition: all 0.3s ease;
+  }
+
+  .footer-profile:hover img {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+
+  .footer-profile-info {
+    text-align: left;
+  }
+
+  .footer-profile-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .footer-profile-link {
+    color: #4267B2;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+  }
+
+  .footer-profile-link:hover {
+    color: #5b7bd5;
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
@@ -373,6 +425,13 @@
 
   <footer>
     <p>© Copyright OnyxDev</p>
+    <div class="footer-profile">
+      <img src="https://scontent.fvno3-1.fna.fbcdn.net/v/t39.30808-1/281419922_507124844409456_1960120679642030549_n.jpg?stp=dst-jpg_p200x200&_nc_cat=105&ccb=1-7&_nc_sid=5740b7&_nc_ohc=sDYexE8A4cIAX9WnLte&_nc_ht=scontent.fvno3-1.fna&oh=00_AfCArzphBnPo_KbxLmWxPo9VzQwq8-lyCGcgG-t4iEBZ9g&oe=65E6FB55" alt="Bryan Cortes profile picture">
+      <div class="footer-profile-info">
+        <div class="footer-profile-name">Bryan Cortes</div>
+        <a href="https://www.facebook.com/26.BryanCortes?mibextid=ZbWKwL" class="footer-profile-link" target="_blank">Ver perfil de Facebook</a>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -459,4 +518,4 @@
     });
   </script>
 </body>
-          </html>
+</html>
