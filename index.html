@@ -85,6 +85,34 @@
       box-shadow: 0 8px 20px rgba(255, 65, 108, 0.6);
     }
 
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .social-button {
+      display: inline-block;
+      color: var(--text-color);
+      padding: 10px 20px;
+      font-size: 1em;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .whatsapp-button { background-color: #25D366; }
+    .telegram-button { background-color: #0088cc; }
+    .youtube-button { background-color: #FF0000; }
+    .facebook-button { background-color: #1877F2; }
+
+    .social-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
     .features {
       display: flex;
       justify-content: space-around;
@@ -155,6 +183,12 @@
       <h1>Play+</h1>
       <p>La mejor app para ver tus películas favoritas</p>
       <a href="https://github.com/playgoapp/archivos/releases/download/Videos/Play+.apk" class="cta-button">Descargar ahora</a>
+      <div class="social-buttons">
+        <a href="https://whatsapp.com/channel/0029VaSTj8i6xCSUcChevG3b" class="social-button whatsapp-button">WhatsApp</a>
+        <a href="https://t.me/PlayGoOficial" class="social-button telegram-button">Telegram</a>
+        <a href="https://youtube.com/@tntprojects26" class="social-button youtube-button">YouTube</a>
+        <a href="https://www.facebook.com/BryanMusicNFOficial?mibextid=ZbWKwL" class="social-button facebook-button">Facebook</a>
+      </div>
     </header>
 
     <div class="features">
