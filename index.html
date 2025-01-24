@@ -686,4 +686,41 @@
         e.preventDefault();
         alert('Te estamos redirigiendo al canal de YouTube. ¡Gracias por suscribirte!');
         setTimeout(() => {
-          window.open(e.target.href, '_
+          window.open(e.target.href, '_blank');
+        }, 1000);
+      });
+
+      const facebookButton = document.querySelector('.facebook-button');
+      facebookButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Te estamos redirigiendo a la página de Facebook. ¡Gracias por seguirnos!');
+        setTimeout(() => {
+          window.open(e.target.href, '_blank');
+        }, 1000);
+      });
+
+      // Añadir efecto de zoom suave a la imagen de la app
+      const appPreview = document.querySelector('.app-preview');
+      appPreview.addEventListener('mousemove', (e) => {
+        const { left, top, width, height } = appPreview.getBoundingClientRect();
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+        
+        const img = appPreview.querySelector('img');
+        img.style.transform = `scale(1.1) translate(${(0.5 - x) * 20}px, ${(0.5 - y) * 20}px)`;
+      });
+      appPreview.addEventListener('mouseleave', () => {
+        const img = appPreview.querySelector('img');
+        img.style.transform = 'scale(1) translate(0, 0)';
+      });
+
+      // Iniciar reproducción automática de música
+      const audio = document.getElementById('background-music');
+      audio.volume = 0.5; // Establecer volumen al 50%
+      audio.play().catch(error => {
+        console.log('Reproducción automática bloqueada por el navegador:', error);
+      });
+    });
+  </script>
+</body>
+</html>
