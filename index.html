@@ -16,14 +16,16 @@
     <meta property="twitter:title" content="Play+ | Descarga la mejor app de películas">
     <meta property="twitter:description" content="Disfruta de miles de películas y series en alta calidad con Play+. ¡Descárgala ahora!">
     <meta property="twitter:image" content="https://raw.githubusercontent.com/playgoapp/archivos/main/logo_playplus.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #1e3c72;
-            --text-color: #fff;
-            --header-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --bg-color: #1a1a2e;
+            --text-color: #ffffff;
+            --header-bg: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
             --feature-bg: rgba(255, 255, 255, 0.1);
-            --footer-bg: rgba(0, 0, 0, 0.5);
+            --footer-bg: rgba(0, 0, 0, 0.7);
+            --primary-color: #e94560;
+            --secondary-color: #00bcd4;
         }
 
         body.dark-mode {
@@ -35,7 +37,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background: var(--bg-color);
@@ -56,30 +58,46 @@
 
         header {
             text-align: center;
-            padding: 50px 0;
+            padding: 100px 0;
             background: var(--header-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: 1;
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 4em;
             margin-bottom: 20px;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(233, 69, 96, 0.7);
         }
 
         .logo {
             width: 150px;
             height: 150px;
+            margin-bottom: 20px;
         }
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: #fff;
             padding: 15px 40px;
             font-size: 1.4em;
             text-decoration: none;
             border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+            box-shadow: 0 10px 20px rgba(233, 69, 96, 0.4);
             margin: 20px 0;
             position: relative;
             overflow: hidden;
@@ -90,12 +108,12 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 65, 108, 0.6);
+            box-shadow: 0 15px 30px rgba(233, 69, 96, 0.6);
         }
 
         .cta-button:active {
             transform: translateY(1px);
-            box-shadow: 0 5px 10px rgba(255, 65, 108, 0.4);
+            box-shadow: 0 5px 10px rgba(233, 69, 96, 0.4);
         }
 
         .cta-button::before {
@@ -119,7 +137,7 @@
             padding: 15px 30px;
             font-size: 1.2em;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 50px;
             transition: background-color 0.3s ease, transform 0.3s ease;
             margin: 10px;
         }
