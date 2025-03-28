@@ -45,7 +45,7 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: #000; /* Negro */
   color: white;
   padding: 40px 20px;
   text-align: center;
@@ -58,7 +58,7 @@ header h1 {
 
 .cta-button {
   display: inline-block;
-  background: #000; /* Negro */
+  background: var(--primary); /* Mismo tono azul que el copyright */
   color: #fff; /* Blanco */
   padding: 20px 40px;
   font-size: 1.2rem;
@@ -70,18 +70,21 @@ header h1 {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   margin-top: 20px;
+  text-align: center;
 }
 
 .cta-button span.version {
   font-size: 0.8rem;
   color: #ccc;
   margin-top: 5px;
+  display: block;
 }
 
 .cta-button span.size {
   font-size: 0.7rem;
   color: #aaa;
   margin-top: 2px;
+  display: block;
 }
 
 .cta-button::before {
@@ -230,55 +233,118 @@ header h1 {
 }
 
 footer {
-  background: var(--primary);
+  background: var(--primary); /* Azul principal */
   color: white;
   text-align: center;
   padding: 20px;
 }
 
-.reasons-section {
-  background: var(--card);
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  margin: 50px 20px;
-  padding: 30px;
+.top-header {
+  background: #000; /* Negro */
+  color: white;
+  padding: 10px 0;
   text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
 }
 
-.reasons-section h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+.top-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.1) 100%
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite linear;
 }
 
-.reasons-section p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
 }
 
-.reasons-list {
+/* Botón flotante de WhatsApp */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.floating-whatsapp a {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
 }
 
-.reason-item {
-  background: var(--background);
+.floating-whatsapp svg {
+  width: 35px;
+  height: 35px;
+  fill: white;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.floating-whatsapp a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Tooltip para el botón flotante */
+.floating-whatsapp-tooltip {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  padding: 10px 15px;
   border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  width: 30%;
-  padding: 20px;
-  transition: all 0.3s;
+  font-size: 0.9em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.reason-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
-  .reason-item { width: 100%; }
+.floating-whatsapp:hover .floating-whatsapp-tooltip {
+  opacity: 1;
+  visibility: visible;
 }
 </style>
 </head>
@@ -296,9 +362,8 @@ footer {
   
   <!-- Botón de descarga mejorado -->
   <a href="https://github.com/playgoapp/playgoapp.github.io/releases/download/Isos/Play+_6.0.apk" class="cta-button">
-    Descargar Ahora
-    <span class="version">VERSIÓN 6.0</span>
-    <span class="size">(9.94MB)</span>
+    Descargar ahora V6.0
+    <span class="size">9.94MB</span>
   </a>
 
   <!-- Botones de redes sociales -->
@@ -311,37 +376,20 @@ footer {
 </header>
 
 <!-- Sección de razones -->
-<div class="reasons-section">
-  <h2>¿Por qué elegir Play+?</h2>
-  <p>Play+ es más que una simple aplicación de streaming. Aquí tienes algunas razones convincentes para elegirnos:</p>
-  
-  <div class="reasons-list">
-    <div class="reason-item">
-      <h3>Sin anuncios</h3>
-      <p>Disfruta de una experiencia sin interrupciones gracias a nuestra política de cero anuncios.</p>
-    </div>
-    <div class="reason-item">
-      <h3>Contenido gratuito</h3>
-      <p>Accede a miles de películas y series sin costo alguno ni suscripciones mensuales.</p>
-    </div>
-    <div class="reason-item">
-      <h3>Alta calidad</h3>
-      <p>Streaming en HD y 4K para una experiencia visual inigualable.</p>
-    </div>
-    <div class="reason-item">
-      <h3>Interfaz intuitiva</h3>
-      <p>Diseño fácil de usar que hace que encontrar tus títulos favoritos sea un placer.</p>
-    </div>
-    <div class="reason-item">
-      <h3>Modo offline</h3>
-      <p>Descarga contenido para verlo sin conexión a internet.</p>
-    </div>
-    <div class="reason-item">
-      <h3>Actualizaciones frecuentes</h3>
-      <p>Nuevo contenido añadido regularmente para mantenerte entretenido.</p>
-    </div>
+<section class="features">
+  <div class="feature">
+    <h2>¿Por qué usar Play+?</h2>
+    <p>Play+ es la mejor aplicación para ver películas y series en calidad HD sin interrupciones. A continuación, te presentamos algunas razones por las cuales deberías elegirla:</p>
+    <ul>
+      <li><strong>Sin anuncios:</strong> Olvídate de los molestos anuncios. Disfruta de una experiencia sin interrupciones.</li>
+      <li><strong>Películas y series gratis:</strong> Accede a una amplia biblioteca de contenido completamente gratis.</li>
+      <li><strong>Alta calidad de streaming:</strong> Disfruta de tus contenidos favoritos en alta definición.</li>
+      <li><strong>Fácil de usar:</strong> Interfaz intuitiva y amigable que hace fácil encontrar lo que buscas.</li>
+      <li><strong>Sin suscripciones:</strong> No necesitas pagar una suscripción mensual, Play+ está completamente libre de cargos.</li>
+    </ul>
+    <p>Si buscas una app confiable y gratuita para ver películas sin interrupciones, ¡Play+ es la opción ideal para ti!</p>
   </div>
-</div>
+</section>
 
 <!-- Video de presentación -->
 <div class="video-container">
@@ -352,7 +400,7 @@ footer {
 </div>
 
 <footer>
-  © 2024 Play+. Todos los derechos reservados.
+  © Copyright tntProjects
 </footer>
 
 <!-- Reproductor de música -->
@@ -362,6 +410,16 @@ footer {
     Tu navegador no soporta el elemento de audio.
   </audio>
   <button onclick="toggleMusic()">🎵</button>
+</div>
+
+<!-- Botón flotante de WhatsApp -->
+<div class="floating-whatsapp">
+  <a href="https://wa.me/+573025612135?text=Hola%20quiero%20solicitar%20una%20película">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18 5.1-1.9 32.9-13.2 37.9-18zM224 288c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm-48-104c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+    </svg>
+  </a>
+  <div class="floating-whatsapp-tooltip">¿Solicitar Película?</div>
 </div>
 
 <script>
@@ -386,11 +444,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
   audio.volume = 0.3; // Volumen al 30%
   
   // Intentar reproducir automáticamente
-  audio.play().catch(error => {
-    console.log('Reproducción automática bloqueada por el navegador:', error);
-  });
-});
-</script>
-
-</body>
-</html>
+  audio.play().catch(error =>
