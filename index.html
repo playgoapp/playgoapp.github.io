@@ -3,18 +3,18 @@
 <base href="https://playplus.app/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Play+ | Streaming de Películas y Series</title>
+<title>Play+ | Descarga la mejor app de películas</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23e50914'/%3E%3Cpath d='M35 30v40l40-20z' fill='%23fff'/%3E%3C/svg%3E">
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://playplus.app/">
-<meta property="og:title" content="Play+ | Streaming de Películas y Series">
+<meta property="og:title" content="Play+ | Descarga la mejor app de películas">
 <meta property="og:description" content="Disfruta de miles de películas y series en alta calidad con Play+. ¡Descárgala ahora!">
 <meta property="og:image" content="https://raw.githubusercontent.com/playgoapp/archivos/main/logo_playplus.png">
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://playplus.app/">
-<meta property="twitter:title" content="Play+ | Streaming de Películas y Series">
+<meta property="twitter:title" content="Play+ | Descarga la mejor app de películas">
 <meta property="twitter:description" content="Disfruta de miles de películas y series en alta calidad con Play+. ¡Descárgala ahora!">
 <meta property="twitter:image" content="https://raw.githubusercontent.com/playgoapp/archivos/main/logo_playplus.png">
 
@@ -23,17 +23,17 @@
 :root {
   --primary: #6200ea;
   --secondary: #03dac6;
+  --background: #121212; /* Fondo oscuro */
+  --card: #1e1e1e; /* Tarjetas más claras */
+  --text: #e0e0e0; /* Texto claro */
+  --accent: #bb86fc; /* Acentos claros */
+}
+
+body.light-mode {
   --background: #f5f5f7;
   --card: #ffffff;
   --text: #212121;
-}
-
-body.dark-mode {
-  --primary: #bb86fc;
-  --secondary: #03dac6;
-  --background: #121212;
-  --card: #1e1e1e;
-  --text: #e0e0e0;
+  --accent: #6200ea;
 }
 
 body {
@@ -158,9 +158,54 @@ footer {
   text-align: center;
   padding: 20px;
 }
+
+.reasons-section {
+  background: var(--card);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  margin: 50px 20px;
+  padding: 30px;
+  text-align: center;
+}
+
+.reasons-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.reasons-section p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.reasons-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.reason-item {
+  background: var(--background);
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  width: 30%;
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+.reason-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .reason-item { width: 100%; }
+}
 </style>
 </head>
-<body>
+<body class="dark-mode">
 
 <header>
   <!-- Logo -->
@@ -183,6 +228,39 @@ footer {
     <a href="https://www.facebook.com/share/19qvw2X2s6/" class="facebook-button">Facebook</a>
   </div>
 </header>
+
+<!-- Sección de razones -->
+<div class="reasons-section">
+  <h2>¿Por qué elegir Play+?</h2>
+  <p>Play+ es más que una simple aplicación de streaming. Aquí tienes algunas razones convincentes para elegirnos:</p>
+  
+  <div class="reasons-list">
+    <div class="reason-item">
+      <h3>Sin anuncios</h3>
+      <p>Disfruta de una experiencia sin interrupciones gracias a nuestra política de cero anuncios.</p>
+    </div>
+    <div class="reason-item">
+      <h3>Contenido gratuito</h3>
+      <p>Accede a miles de películas y series sin costo alguno ni suscripciones mensuales.</p>
+    </div>
+    <div class="reason-item">
+      <h3>Alta calidad</h3>
+      <p>Streaming en HD y 4K para una experiencia visual inigualable.</p>
+    </div>
+    <div class="reason-item">
+      <h3>Interfaz intuitiva</h3>
+      <p>Diseño fácil de usar que hace que encontrar tus títulos favoritos sea un placer.</p>
+    </div>
+    <div class="reason-item">
+      <h3>Modo offline</h3>
+      <p>Descarga contenido para verlo sin conexión a internet.</p>
+    </div>
+    <div class="reason-item">
+      <h3>Actualizaciones frecuentes</h3>
+      <p>Nuevo contenido añadido regularmente para mantenerte entretenido.</p>
+    </div>
+  </div>
+</div>
 
 <!-- Video de presentación -->
 <div class="video-container">
@@ -223,7 +301,7 @@ footer {
 <script>
 // Mantener funcionalidad de modo oscuro
 function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
+  document.body.classList.toggle('light-mode');
 }
 
 // Control de música de fondo
