@@ -176,8 +176,56 @@ header h1 {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+.security-notice {
+  background: #1a1a2e;
+  border-left: 5px solid #ff9800;
+  padding: 25px;
+  margin: 40px auto;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.security-notice h2 {
+  color: #ff9800;
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.security-notice p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.security-notice .highlight {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.security-steps {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.security-steps li {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.security-steps li::before {
+  content: "✓";
+  color: #4caf50;
+  font-weight: bold;
+  position: absolute;
+  left: -25px;
+}
+
 @media (max-width: 768px) {
   .feature { width: 100%; }
+  .security-notice {
+    margin: 20px;
+    padding: 15px;
+  }
 }
 
 .video-container {
@@ -389,6 +437,28 @@ footer {
     <p>Si buscas una app confiable y gratuita para ver películas sin interrupciones, ¡Play+ es la opción ideal para ti!</p>
   </div>
 </section>
+
+<div class="security-notice">
+  <h2>Nota importante sobre seguridad</h2>
+  <p>Al descargar e instalar Play+, es posible que tu dispositivo muestre una advertencia indicando que "esta aplicación podría ser dañina". <span class="highlight">Esta advertencia es normal</span> y no significa que la aplicación sea insegura.</p>
+  
+  <p>Esto ocurre porque:</p>
+  <ul class="security-steps">
+    <li>Play+ no está disponible en Google Play Store, por lo que no ha pasado por su proceso de verificación.</li>
+    <li>Android protege a los usuarios bloqueando instalaciones de fuentes desconocidas por defecto.</li>
+    <li>No hemos pagado a Google para que certifique nuestra aplicación, lo que permite mantenerla gratuita para todos.</li>
+  </ul>
+  
+  <p><strong>Play+ es completamente seguro de instalar y usar.</strong> Miles de usuarios disfrutan de nuestra aplicación sin problemas. Para instalar:</p>
+  
+  <ol class="security-steps">
+    <li>Ve a Ajustes > Seguridad y activa "Fuentes desconocidas"</li>
+    <li>Descarga el archivo APK desde nuestro sitio oficial</li>
+    <li>Abre el archivo descargado y sigue las instrucciones de instalación</li>
+  </ol>
+  
+  <p>Si tienes dudas, contáctanos a través de nuestros canales oficiales y con gusto te ayudaremos.</p>
+</div>
 
 <div class="video-container">
   <iframe src="https://www.youtube.com/embed/en26CmaNEtQ" 
