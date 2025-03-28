@@ -57,20 +57,97 @@ header h1 {
 }
 
 .cta-button {
-  background: var(--secondary);
-  color: black;
-  padding: 15px 30px;
-  font-size: 1rem;
-  border-radius: 30px;
-  text-decoration: none;
   display: inline-block;
+  background: #000; /* Negro */
+  color: #fff; /* Blanco */
+  padding: 20px 40px;
+  font-size: 1.2rem;
+  border-radius: 0; /* Sin esquinas redondas */
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
   margin-top: 20px;
-  transition: all 0.3s;
+}
+
+.cta-button span.version {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+.cta-button span.size {
+  font-size: 0.7rem;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: all 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
 }
 
 .cta-button:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.whatsapp-button, .telegram-button, .youtube-button, .facebook-button {
+  display: inline-block;
+  color: #fff;
+  padding: 15px 20px;
+  font-size: 1em;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.whatsapp-button {
+  background-color: #25D366;
+}
+.telegram-button {
+  background-color: #0088cc;
+}
+.youtube-button {
+  background-color: #FF0000;
+}
+.facebook-button {
+  background-color: #1877F2;
+}
+
+.whatsapp-button:hover, .telegram-button:hover, .youtube-button:hover, .facebook-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .features {
@@ -83,7 +160,7 @@ header h1 {
 .feature {
   background: var(--card);
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 30%;
   padding: 20px;
   margin: 10px;
@@ -93,7 +170,7 @@ header h1 {
 
 .feature:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -108,7 +185,7 @@ header h1 {
   padding-bottom: 56.25%;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -162,7 +239,7 @@ footer {
 .reasons-section {
   background: var(--card);
   border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   margin: 50px 20px;
   padding: 30px;
   text-align: center;
@@ -189,7 +266,7 @@ footer {
 .reason-item {
   background: var(--background);
   border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   width: 30%;
   padding: 20px;
   transition: all 0.3s;
@@ -197,7 +274,7 @@ footer {
 
 .reason-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -217,11 +294,15 @@ footer {
   <h1>Play+</h1>
   <p>Tu plataforma de streaming favorita</p>
   
-  <!-- Botón de descarga -->
-  <a href="https://github.com/playgoapp/playgoapp.github.io/releases/download/Isos/Play+_6.0.apk" class="cta-button">Descargar Ahora V6.0</a>
-  
-  <!-- Redes sociales -->
-  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:20px;">
+  <!-- Botón de descarga mejorado -->
+  <a href="https://github.com/playgoapp/playgoapp.github.io/releases/download/Isos/Play+_6.0.apk" class="cta-button">
+    Descargar Ahora
+    <span class="version">VERSIÓN 6.0</span>
+    <span class="size">9.94MB</span>
+  </a>
+
+  <!-- Botones de redes sociales -->
+  <div class="social-buttons">
     <a href="https://whatsapp.com/channel/0029VaSTj8i6xCSUcChevG3b" class="whatsapp-button">WhatsApp</a>
     <a href="https://t.me/playappoficial" class="telegram-button">Telegram</a>
     <a href="https://youtube.com/@tntprojects26" class="youtube-button">YouTube</a>
@@ -268,21 +349,6 @@ footer {
     title="Play+ App Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen>
   </iframe>
-</div>
-
-<div class="features">
-  <div class="feature">
-    <h3>Catálogo Extensivo</h3>
-    <p>Miles de películas y series disponibles</p>
-  </div>
-  <div class="feature">
-    <h3>Calidad HD/4K</h3>
-    <p>Disfruta contenido en alta definición</p>
-  </div>
-  <div class="feature">
-    <h3>Modo Offline</h3>
-    <p>Descarga para ver sin conexión</p>
-  </div>
 </div>
 
 <footer>
