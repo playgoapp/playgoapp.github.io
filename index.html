@@ -23,10 +23,10 @@
 :root {
   --primary: #6200ea;
   --secondary: #03dac6;
-  --background: #121212; /* Fondo oscuro */
-  --card: #1e1e1e; /* Tarjetas más claras */
-  --text: #e0e0e0; /* Texto claro */
-  --accent: #bb86fc; /* Acentos claros */
+  --background: #121212;
+  --card: #1e1e1e;
+  --text: #e0e0e0;
+  --accent: #bb86fc;
 }
 
 body.light-mode {
@@ -45,7 +45,7 @@ body {
 }
 
 header {
-  background: #000; /* Negro */
+  background: #000;
   color: white;
   padding: 40px 20px;
   text-align: center;
@@ -58,11 +58,11 @@ header h1 {
 
 .cta-button {
   display: inline-block;
-  background: var(--primary); /* Mismo tono azul que el copyright */
-  color: #fff; /* Blanco */
+  background: var(--primary);
+  color: #fff;
   padding: 20px 40px;
   font-size: 1.2rem;
-  border-radius: 0; /* Sin esquinas redondas */
+  border-radius: 0;
   text-decoration: none;
   position: relative;
   overflow: hidden;
@@ -226,6 +226,11 @@ header h1 {
   cursor: pointer;
   margin-left: 10px;
   transition: transform 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .audio-player button:hover {
@@ -233,14 +238,14 @@ header h1 {
 }
 
 footer {
-  background: var(--primary); /* Azul principal */
+  background: var(--primary);
   color: white;
   text-align: center;
   padding: 20px;
 }
 
 .top-header {
-  background: #000; /* Negro */
+  background: #000;
   color: white;
   padding: 10px 0;
   text-align: center;
@@ -278,7 +283,6 @@ footer {
   }
 }
 
-/* Botón flotante de WhatsApp */
 .floating-whatsapp {
   position: fixed;
   bottom: 20px;
@@ -325,7 +329,6 @@ footer {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* Tooltip para el botón flotante */
 .floating-whatsapp-tooltip {
   position: absolute;
   bottom: 80px;
@@ -351,7 +354,6 @@ footer {
 <body class="dark-mode">
 
 <header>
-  <!-- Logo -->
   <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:150px; height:150px;">
     <circle cx="50" cy="50" r="45" fill="#e50914"/>
     <path d="M35 30v40l40-20z" fill="#fff"/>
@@ -360,13 +362,11 @@ footer {
   <h1>Play+</h1>
   <p>Tu plataforma de streaming favorita</p>
   
-  <!-- Botón de descarga mejorado -->
   <a href="https://github.com/playgoapp/playgoapp.github.io/releases/download/Isos/Play+_6.0.apk" class="cta-button">
     Descargar ahora V6.0
     <span class="size">9.94MB</span>
   </a>
 
-  <!-- Botones de redes sociales -->
   <div class="social-buttons">
     <a href="https://whatsapp.com/channel/0029VaSTj8i6xCSUcChevG3b" class="whatsapp-button">WhatsApp</a>
     <a href="https://t.me/playappoficial" class="telegram-button">Telegram</a>
@@ -375,7 +375,6 @@ footer {
   </div>
 </header>
 
-<!-- Sección de razones -->
 <section class="features">
   <div class="feature">
     <h2>¿Por qué usar Play+?</h2>
@@ -391,7 +390,6 @@ footer {
   </div>
 </section>
 
-<!-- Video de presentación -->
 <div class="video-container">
   <iframe src="https://www.youtube.com/embed/en26CmaNEtQ" 
     title="Play+ App Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -403,16 +401,14 @@ footer {
   © Copyright tntProjects
 </footer>
 
-<!-- Reproductor de música -->
 <div class="audio-player">
   <audio id="background-music" loop>
     <source src="https://github.com/playgoapp/playgoapp.github.io/releases/download/Isos/Shadow.Lady.MP3_160K.mp3" type="audio/mpeg">
     Tu navegador no soporta el elemento de audio.
   </audio>
-  <button onclick="toggleMusic()">🎵</button>
+  <button id="music-button">🎵</button>
 </div>
 
-<!-- Botón flotante de WhatsApp -->
 <div class="floating-whatsapp">
   <a href="https://wa.me/+573025612135?text=Hola%20quiero%20solicitar%20una%20película">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -423,25 +419,65 @@ footer {
 </div>
 
 <script>
+// Control de música de fondo mejorado
+const audio = document.getElementById('background-music');
+const musicButton = document.getElementById('music-button');
+
+// Configuración inicial
+audio.volume = 0.3;
+let audioInteracted = false;
+
+// Función para alternar la música
+function toggleMusic() {
+  if (audio.paused) {
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        musicButton.textContent = "🔊";
+      }).catch(error => {
+        musicButton.textContent = "🔇 (Click aquí)";
+      });
+    }
+  } else {
+    audio.pause();
+    musicButton.textContent = "🎵";
+  }
+}
+
+// Evento click para el botón de música
+musicButton.addEventListener('click', () => {
+  if (!audioInteracted) {
+    // Primer click - activa la interacción
+    audioInteracted = true;
+    document.body.addEventListener('click', handleBodyClick, { once: true });
+    toggleMusic();
+  } else {
+    // Clicks posteriores
+    toggleMusic();
+  }
+});
+
+// Manejar el primer click en el body para desbloquear audio
+function handleBodyClick() {
+  if (audio.paused) {
+    toggleMusic();
+  }
+}
+
+// Actualizar icono según estado de reproducción
+audio.addEventListener('play', () => {
+  musicButton.textContent = "🔊";
+});
+
+audio.addEventListener('pause', () => {
+  musicButton.textContent = "🎵";
+});
+
 // Mantener funcionalidad de modo oscuro
 function toggleDarkMode() {
   document.body.classList.toggle('light-mode');
 }
-
-// Control de música de fondo
-function toggleMusic() {
-  const audio = document.getElementById('background-music');
-  if (audio.paused) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
-}
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  // Ajustar volumen de música
-  const audio = document.getElementById('background-music');
-  audio.volume = 0.3; // Volumen al 30%
-  
-  // Intentar reproducir automáticamente
-  audio.play().catch(error =>
+</script>
+</body>
+</html>
