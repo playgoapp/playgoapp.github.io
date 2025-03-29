@@ -282,7 +282,7 @@ header h1 {
   margin: 5px 0;
 }
 
-/* Nuevos estilos para comparativa */
+/* Estilos para comparativa */
 .comparison {
   padding: 40px 20px;
   max-width: 1000px;
@@ -336,6 +336,63 @@ header h1 {
   color: #F44336;
 }
 
+/* Nuevos estilos para FAQ */
+.faq {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--accent);
+}
+
+.faq-item {
+  background: var(--card);
+  margin-bottom: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.faq-question {
+  padding: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.faq-question:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.faq-question::after {
+  content: "+";
+  font-size: 1.5rem;
+}
+
+.faq-question.active::after {
+  content: "-";
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer.show {
+  padding: 0 20px 20px;
+  max-height: 500px;
+}
+
 @media (max-width: 768px) {
   .feature { width: 100%; }
   .security-notice {
@@ -347,6 +404,9 @@ header h1 {
   }
   .comparison-table {
     font-size: 0.9rem;
+  }
+  .faq-question {
+    padding: 15px;
   }
 }
 
@@ -589,7 +649,7 @@ footer {
   </div>
 </section>
 
-<!-- Nueva sección de comparativa -->
+<!-- Sección de comparativa -->
 <section class="comparison">
   <h2>Play+ vs Otras Plataformas</h2>
   <p>Descubre por qué Play+ es la mejor opción frente a otras aplicaciones de streaming:</p>
@@ -642,6 +702,46 @@ footer {
       </tr>
     </tbody>
   </table>
+</section>
+
+<!-- Nueva sección de FAQ -->
+<section class="faq">
+  <h2>Preguntas Frecuentes</h2>
+  
+  <div class="faq-item">
+    <div class="faq-question">¿Play+ es realmente gratis?</div>
+    <div class="faq-answer">
+      <p>Sí, Play+ es completamente gratis. No tenemos suscripciones ocultas ni pagos inesperados. Nuestro modelo se sustenta con donaciones opcionales de usuarios que quieren apoyar el proyecto.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">¿Cómo puedo solicitar una película o serie?</div>
+    <div class="faq-answer">
+      <p>Puedes enviarnos tus solicitudes a través de nuestro canal de WhatsApp oficial (botón flotante) o en nuestro grupo de Telegram. Normalmente agregamos contenido solicitado en 24-48 horas.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">¿Es legal usar Play+?</div>
+    <div class="faq-answer">
+      <p>Play+ es una plataforma de streaming que opera bajo las leyes de distribución de contenido digital. Recomendamos usarla para acceder a contenido de dominio público o con derechos abiertos.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">¿Por qué no está disponible en Google Play Store?</div>
+    <div class="faq-answer">
+      <p>Para mantener la app gratuita y sin restricciones, evitamos los costosos procesos de certificación de Google Play. Esto nos permite ofrecer más contenido y actualizaciones frecuentes.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">¿Cómo actualizo a la nueva versión?</div>
+    <div class="faq-answer">
+      <p>Descarga la nueva versión desde nuestro sitio oficial y reinstala. Tus datos y favoritos se mantendrán intactos. Te avisamos de nuevas versiones en nuestros canales oficiales.</p>
+    </div>
+  </div>
 </section>
 
 <div class="security-notice">
@@ -748,6 +848,28 @@ audio.addEventListener('play', () => {
 
 audio.addEventListener('pause', () => {
   musicButton.textContent = "🎵";
+});
+
+// Funcionalidad para FAQ
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+    const isActive = question.classList.contains('active');
+    
+    // Cerrar todas las respuestas primero
+    document.querySelectorAll('.faq-answer').forEach(a => {
+      a.classList.remove('show');
+    });
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.classList.remove('active');
+    });
+    
+    // Abrir la respuesta clickeada si no estaba activa
+    if (!isActive) {
+      answer.classList.add('show');
+      question.classList.add('active');
+    }
+  });
 });
 
 // Mantener funcionalidad de modo oscuro
