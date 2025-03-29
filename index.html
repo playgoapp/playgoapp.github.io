@@ -220,11 +220,76 @@ header h1 {
   left: -25px;
 }
 
+/* Nuevos estilos para testimonios */
+.testimonials {
+  padding: 40px 20px;
+  text-align: center;
+  background: var(--background);
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--accent);
+}
+
+.testimonials-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: var(--card);
+  border-radius: 15px;
+  padding: 25px;
+  width: 300px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  text-align: left;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+}
+
+.testimonial-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  float: left;
+}
+
+.testimonial-card h3 {
+  margin: 10px 0 5px;
+  color: var(--accent);
+}
+
+.testimonial-card p {
+  font-style: italic;
+  clear: both;
+  padding-top: 15px;
+}
+
+.testimonial-card .rating {
+  color: #FFD700;
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
 @media (max-width: 768px) {
   .feature { width: 100%; }
   .security-notice {
     margin: 20px;
     padding: 15px;
+  }
+  .testimonial-card {
+    width: 100%;
   }
 }
 
@@ -437,6 +502,33 @@ footer {
       <li><strong>Contenido actualizado:</strong> Nuevos estrenos agregados semanalmente para mantenerte entretenido.</li>
     </ul>
     <p>Si buscas la mejor app de streaming en Latinoamérica, con la mayor variedad de contenido y la mejor experiencia de usuario, ¡Play+ es la opción ideal para ti! Únete a la comunidad más grande de amantes del cine y series en la región.</p>
+  </div>
+</section>
+
+<!-- Nueva sección de testimonios -->
+<section class="testimonials">
+  <h2>Lo que dicen nuestros usuarios</h2>
+  <div class="testimonials-container">
+    <div class="testimonial-card">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Usuario 1">
+      <h3>María G.</h3>
+      <div class="rating">★★★★★</div>
+      <p>"La mejor app para ver películas sin pagar. Tengo 2 años usándola y nunca me falla. ¡La recomiendo!"</p>
+    </div>
+    
+    <div class="testimonial-card">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Usuario 2">
+      <h3>Carlos R.</h3>
+      <div class="rating">★★★★☆</div>
+      <p>"Tiene todos los estrenos en HD. Me encanta que no tenga anuncios como otras apps."</p>
+    </div>
+    
+    <div class="testimonial-card">
+      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Usuario 3">
+      <h3>Laura M.</h3>
+      <div class="rating">★★★★★</div>
+      <p>"Descargué Play+ por recomendación de un amigo y ahora no uso otra cosa. ¡Funciona perfecto!"</p>
+    </div>
   </div>
 </section>
 
