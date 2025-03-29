@@ -220,7 +220,7 @@ header h1 {
   left: -25px;
 }
 
-/* Nuevos estilos para testimonios */
+/* Estilos para testimonios */
 .testimonials {
   padding: 40px 20px;
   text-align: center;
@@ -282,6 +282,60 @@ header h1 {
   margin: 5px 0;
 }
 
+/* Nuevos estilos para comparativa */
+.comparison {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.comparison h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--accent);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: var(--card);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.comparison-table th, 
+.comparison-table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.comparison-table th {
+  background-color: var(--primary);
+  color: white;
+  font-weight: bold;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tr:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.check-icon {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.cross-icon {
+  color: #F44336;
+}
+
 @media (max-width: 768px) {
   .feature { width: 100%; }
   .security-notice {
@@ -290,6 +344,9 @@ header h1 {
   }
   .testimonial-card {
     width: 100%;
+  }
+  .comparison-table {
+    font-size: 0.9rem;
   }
 }
 
@@ -505,7 +562,7 @@ footer {
   </div>
 </section>
 
-<!-- Nueva sección de testimonios -->
+<!-- Sección de testimonios -->
 <section class="testimonials">
   <h2>Lo que dicen nuestros usuarios</h2>
   <div class="testimonials-container">
@@ -530,6 +587,61 @@ footer {
       <p>"Descargué Play+ por recomendación de un amigo y ahora no uso otra cosa. ¡Funciona perfecto!"</p>
     </div>
   </div>
+</section>
+
+<!-- Nueva sección de comparativa -->
+<section class="comparison">
+  <h2>Play+ vs Otras Plataformas</h2>
+  <p>Descubre por qué Play+ es la mejor opción frente a otras aplicaciones de streaming:</p>
+  
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Característica</th>
+        <th>Play+</th>
+        <th>Netflix</th>
+        <th>Paramount Plus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Precio</td>
+        <td class="check-icon">GRATIS</td>
+        <td class="cross-icon">$5/mes</td>
+        <td class="cross-icon">$8/mes</td>
+      </tr>
+      <tr>
+        <td>Sin anuncios</td>
+        <td class="check-icon">✅</td>
+        <td class="cross-icon">❌</td>
+        <td class="cross-icon">❌</td>
+      </tr>
+      <tr>
+        <td>Calidad HD</td>
+        <td class="check-icon">✅</td>
+        <td class="check-icon">✅</td>
+        <td class="cross-icon">❌</td>
+      </tr>
+      <tr>
+        <td>Estrenos recientes</td>
+        <td class="check-icon">✅</td>
+        <td class="cross-icon">❌</td>
+        <td class="check-icon">✅</td>
+      </tr>
+      <tr>
+        <td>Soporte 24/7</td>
+        <td class="check-icon">✅</td>
+        <td class="cross-icon">❌</td>
+        <td class="cross-icon">❌</td>
+      </tr>
+      <tr>
+        <td>Descargas offline</td>
+        <td class="check-icon">✅</td>
+        <td class="check-icon">✅</td>
+        <td class="cross-icon">❌</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <div class="security-notice">
